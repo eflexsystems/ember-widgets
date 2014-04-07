@@ -49,9 +49,9 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n</div>\n<a class=\"left carousel-control\"  href=\"#\" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "prev", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
-  data.buffer.push(">‹</a>\n<a class=\"right carousel-control\" href=\"#\" ");
+  data.buffer.push("><</a>\n<a class=\"right carousel-control\" href=\"#\" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "next", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
-  data.buffer.push(">›</a>\n");
+  data.buffer.push(">></a>\n");
   return buffer;
   
 });
