@@ -21,7 +21,8 @@ Ember.Widgets.CarouselComponent = Ember.Component.extend
 
   actions:
     prev: ->
-    alert "hello I am here"
+      alert "hello I am here"
+      $("div.ember-view").removeClass "active"
       return if @get('sliding')
       activeIndex = @get 'activeIndex'
       contentLength = @get 'content.length'
@@ -30,6 +31,7 @@ Ember.Widgets.CarouselComponent = Ember.Component.extend
       @slide 'prev', nextIndex
   
     next: ->
+      $("div.ember-view").removeClass "active"
       return if @get('sliding')
       activeIndex = @get 'activeIndex'
       contentLength = @get 'content.length'
