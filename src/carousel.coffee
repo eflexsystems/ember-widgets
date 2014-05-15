@@ -53,6 +53,7 @@ Ember.Widgets.CarouselComponent = Ember.Component.extend
   # type: next | prev
   # next: is the index of the next slide
   slide: (type, nextIndex) ->
+    console.log('******************Previous action')
     return if @get('activeIndex') is nextIndex
     direction = if type == 'next' then 'left' else 'right'
     $active = $(@$('.item').get(@get('activeIndex')))
