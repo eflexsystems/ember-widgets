@@ -21,6 +21,7 @@ Ember.Widgets.CarouselComponent = Ember.Component.extend
 
   actions:
     prev: ->
+    alert "hello I am here"
       return if @get('sliding')
       activeIndex = @get 'activeIndex'
       contentLength = @get 'content.length'
