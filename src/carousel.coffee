@@ -21,9 +21,13 @@ Ember.Widgets.CarouselComponent = Ember.Component.extend
 
   actions:
     prev: ->
-      console.log('******************Previous action')
-      $("div.ember-view").removeClass "active"
+      @set 'content', new Array(@$('.item').length) if not @get('content')
       return if @get('sliding')
+      i = 0
+      while i < @get("content.length")
+        if $(@$(".item").get(i)).attr("class").indexOf("active") > -1 and $(@$(".item").get(i)).attr("class").indexOf("testActive") <= -1          
+          @set "activeIndex", i
+        i++
       activeIndex = @get 'activeIndex'
       contentLength = @get 'content.length'
       nextIndex = activeIndex - 1
@@ -31,8 +35,13 @@ Ember.Widgets.CarouselComponent = Ember.Component.extend
       @slide 'prev', nextIndex
   
     next: ->
-      $("div.ember-view").removeClass "active"
+      @set 'content', new Array(@$('.item').length) if not @get('content')
       return if @get('sliding')
+      i = 0
+      while i < @get("content.length")
+        if $(@$(".item").get(i)).attr("class").indexOf("active") > -1 and $(@$(".item").get(i)).attr("class").indexOf("testActive") <= -1          
+          @set "activeIndex", i
+        i++
       activeIndex = @get 'activeIndex'
       contentLength = @get 'content.length'
       nextIndex = activeIndex + 1
@@ -53,7 +62,6 @@ Ember.Widgets.CarouselComponent = Ember.Component.extend
   # type: next | prev
   # next: is the index of the next slide
   slide: (type, nextIndex) ->
-    console.log('******************Previous action')
     return if @get('activeIndex') is nextIndex
     direction = if type == 'next' then 'left' else 'right'
     $active = $(@$('.item').get(@get('activeIndex')))
@@ -72,8 +80,8 @@ Ember.Widgets.CarouselComponent = Ember.Component.extend
       # asynchronous side-effects in an Ember.run
       Ember.run this, ->
         @set 'activeIndex', nextIndex
-        $next.removeClass([type, direction].join(' ')).addClass('active')
-        $active.removeClass(['active', direction].join(' '))
+        $next.removeClass([type, direction].join(' ')).addClass('active').addClass('testActive')
+        $active.removeClass(['active', direction].join(' ')).removeClass('testActive')
         @set 'sliding', no
 
 Ember.Widgets.CarouselIndicator = Ember.View.extend
