@@ -506,9 +506,19 @@ Ember.Widgets.CarouselComponent = Ember.Component.extend({
   },
   actions: {
     prev: function() {
-      var activeIndex, contentLength, nextIndex;
+      var activeIndex, contentLength, i, nextIndex;
+      if (!this.get('content')) {
+        this.set('content', new Array(this.$('.item').length));
+      }
       if (this.get('sliding')) {
         return;
+      }
+      i = 0;
+      while (i < this.get("content.length")) {
+        if ($(this.$(".item").get(i)).attr("class").indexOf("active") > -1 && $(this.$(".item").get(i)).attr("class").indexOf("testActive") <= -1) {
+          this.set("activeIndex", i);
+        }
+        i++;
       }
       activeIndex = this.get('activeIndex');
       contentLength = this.get('content.length');
@@ -517,9 +527,19 @@ Ember.Widgets.CarouselComponent = Ember.Component.extend({
       return this.slide('prev', nextIndex);
     },
     next: function() {
-      var activeIndex, contentLength, nextIndex;
+      var activeIndex, contentLength, i, nextIndex;
+      if (!this.get('content')) {
+        this.set('content', new Array(this.$('.item').length));
+      }
       if (this.get('sliding')) {
         return;
+      }
+      i = 0;
+      while (i < this.get("content.length")) {
+        if ($(this.$(".item").get(i)).attr("class").indexOf("active") > -1 && $(this.$(".item").get(i)).attr("class").indexOf("testActive") <= -1) {
+          this.set("activeIndex", i);
+        }
+        i++;
       }
       activeIndex = this.get('activeIndex');
       contentLength = this.get('content.length');
@@ -559,8 +579,8 @@ Ember.Widgets.CarouselComponent = Ember.Component.extend({
     return this.$().one($.support.transition.end, function() {
       return Ember.run(_this, function() {
         this.set('activeIndex', nextIndex);
-        $next.removeClass([type, direction].join(' ')).addClass('active');
-        $active.removeClass(['active', direction].join(' '));
+        $next.removeClass([type, direction].join(' ')).addClass('active').addClass('testActive');
+        $active.removeClass(['active', direction].join(' ')).removeClass('testActive');
         return this.set('sliding', false);
       });
     });
