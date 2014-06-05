@@ -507,9 +507,7 @@ Ember.Widgets.CarouselComponent = Ember.Component.extend({
   actions: {
     prev: function() {
       var activeIndex, contentLength, i, nextIndex;
-      if (!this.get('content')) {
-        this.set('content', new Array(this.$('.item').length));
-      }
+      this.set('content', new Array(this.$('.item').length));
       if (this.get('sliding')) {
         return;
       }
@@ -528,9 +526,7 @@ Ember.Widgets.CarouselComponent = Ember.Component.extend({
     },
     next: function() {
       var activeIndex, contentLength, i, nextIndex;
-      if (!this.get('content')) {
-        this.set('content', new Array(this.$('.item').length));
-      }
+      this.set('content', new Array(this.$('.item').length));
       if (this.get('sliding')) {
         return;
       }
