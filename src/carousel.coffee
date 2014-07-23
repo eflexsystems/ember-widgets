@@ -21,7 +21,7 @@ Ember.Widgets.CarouselComponent = Ember.Component.extend
 
   actions:
     prev: ->
-      @set 'content', new Array(@$('.item').length) if not @get('content')
+      @set 'content', new Array(@$('.item').length)
       return if @get('sliding')
       i = 0
       while i < @get("content.length")
@@ -35,7 +35,7 @@ Ember.Widgets.CarouselComponent = Ember.Component.extend
       @slide 'prev', nextIndex
   
     next: ->
-      @set 'content', new Array(@$('.item').length) if not @get('content')
+      @set 'content', new Array(@$('.item').length)
       return if @get('sliding')
       i = 0
       while i < @get("content.length")
